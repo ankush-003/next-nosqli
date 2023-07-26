@@ -1,17 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    experimental: {
+  rewrites: async () => {
+    return [
+      {
+        source: "/api/:path*",
+        destination:
+          process.env.NODE_ENV === "development"
+            ? "http://127.0.0.1:8000/api/:path*"
+            : "/api/",
+      },
+    ];
+  },
+  experimental: {
         serverActions: true,
-    },
-    // webpack: (config) => {
-    //     // See https://webpack.js.org/configuration/resolve/#resolvealias
-    //     config.resolve.alias = {
-    //         ...config.resolve.alias,
-    //         "sharp$": false,
-    //         "onnxruntime-node$": false,
-    //     }
-    //     return config;
-    // }
-}
+    }  
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
