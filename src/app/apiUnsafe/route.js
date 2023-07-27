@@ -32,7 +32,7 @@ export async function POST(req) {
     const client = await clientPromise;
     const db = client.db("nosqli");
     const test = await db.collection("users").find({
-        username: username,
+        // username: username,
         password: password,
     }).toArray();
     const test2 = JSON.stringify(test)
