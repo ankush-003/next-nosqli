@@ -33,9 +33,9 @@ username[$ne]=toto&password[$regex]=md.*`}
         <div>
           <h3 className="text-xl font-bold mb-4">JSON Examples:</h3>
           <pre className="p-4 bg-slate-400 text-black rounded-lg hover:backdrop-blur-lg">
-            {`{"username": {"$eq": "admin"}, "password": {"$regex": "^m" }}
-{"username": {"$eq": "admin"}, "password": {"$regex": "^md" }}
-{"username": {"$eq": "admin"}, "password": {"$regex": "^mdp" }}`}
+            {`{"username": {"$ne": null}, "password": {"$ne": null} }
+{"username": {"$ne": "foo"}, "password": {"$ne": "bar"} }
+{"username": {"$gt": undefined}, "password": {"$gt": undefined} }`}
           </pre>
         </div>
       </div>
