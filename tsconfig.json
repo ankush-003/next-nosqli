@@ -23,6 +23,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/db_test.ts", "src/app/apiSafe/route.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/db_test.ts", "src/app/apiSafe/route.js", "src/app/apiUnsafe/route.js"],
   "exclude": ["node_modules"]
 }
