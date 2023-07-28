@@ -9,8 +9,8 @@ datasource db {
 
 model users {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  username String 
-  password String 
+  username String @unique
+  password String @unique
   // email is optional
   email String?
 }

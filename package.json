@@ -4,12 +4,14 @@
   "private": true,
   "scripts": {
     "fastapi-dev": "pip3 install -r requirements.txt && python3 -m uvicorn api.index:app --reload",
+    "docker-fastapi-dev": "fast/bin/pip install -r requirements.txt && fast/bin/python -m uvicorn api.index:app --reload",
     "fastapi-dev-win": "pip install -r requirements.txt && python -m uvicorn api.index:app --reload",
     "next-dev": "next dev",
     "dev": "concurrently \"npm run next-dev\" \"npm run fastapi-dev\"",
     "dev-win": "concurrently \"npm run next-dev\" \"npm run fastapi-dev-win\"",
     "build": "prisma generate && next build",
     "start": "next start",
+    "docker-start": "concurrently \"npm run start\" \"npm run docker-fastapi-dev\"",
     "lint": "next lint"
   },
   "dependencies": {
