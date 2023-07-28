@@ -20,7 +20,8 @@ export async function POST(req: Request) {
             username: username,
             password: password,
         });
-        const body = JSON.stringify({ payload: payload});
+        const body = JSON.stringify({ payload: payload.trim()});
+        console.log(`${URL}/test`);
         const res_data = await fetch(`${URL}/test`, {
             method: "POST",
             headers: {
@@ -29,11 +30,13 @@ export async function POST(req: Request) {
             body: body
         });
         const res = await res_data.json()
-        if (res.result.label === "Malicious") {
+        // const res_text = await res_data.text();
+        // const res = JSON.parse(res_text);
+        if (res?.result.label === "Malicious") {
             console.log("Malicious request detected");
             return NextResponse.json({res: res, payload: payload});
         } 
-        if (res.result.label === "Benign") {
+        if (res?.result.label === "Benign") {
             console.log("Safe request");
             // console.log(username, password, email);
             const user = await prisma.users.findMany({
