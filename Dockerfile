@@ -14,7 +14,7 @@ COPY . .
 COPY prisma ./prisma
 RUN npx prisma generate
 EXPOSE 3000
-ENV NODE_ENV="docker"
+# ENV NODE_ENV="docker"
 ENV DATABASE_URL="mongodb+srv://Ankush:ganya@learning.id5ibpg.mongodb.net/nosqli?retryWrites=true&w=majority"
 ENV MONGODB_URI="mongodb+srv://Ankush:ganya@learning.id5ibpg.mongodb.net/?retryWrites=true&w=majority"
 RUN npm run build
