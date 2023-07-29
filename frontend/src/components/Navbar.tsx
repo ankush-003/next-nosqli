@@ -51,7 +51,7 @@ export default function Navbar() {
                         <div>
                             <div className="relative ml-3">
                                 <div>
-                                <Link href="https://github.com/ankush-003/NoSQLi-Detector" className="text-gray-300 hover:text-white rounded-md px-3 py-2font-medium">
+                                <Link href="https://github.com/ankush-003/next-nosqli" className="text-gray-300 hover:text-white rounded-md px-3 py-2font-medium">
                                         <div className='flex gap-1 items-center'>
                                             <AiFillGithub className="text-2xl text-white hidden md:block" />
                                             <h1>Github</h1>
