@@ -7,16 +7,21 @@ async function createUser(data: FormData) {
   const username = data.get("username")?.toString();
   const email = data.get("email")?.toString();
   const password = data.get("password")?.toString();
-  const user = await prisma.users.create({
-    data: {
-      // ! means that we are sure that the value is not null
-      username: username!,
-      email,
-      password: password!,
-    },
-  });
-  console.log(user);
-  redirect("/");
+  try  {
+    const user = await prisma.users.create({
+      data: {
+        // ! means that we are sure that the value is not null
+        username: username!,
+        email: email!,
+        password: password!,
+      },
+    });
+    console.log(user);
+    redirect("/");
+  } catch(e) {
+    console.log(e);
+    redirect("/signup");
+  }
 }
 
 export default function Signup() {
