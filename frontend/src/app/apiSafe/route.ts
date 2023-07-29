@@ -4,9 +4,7 @@ import { NextResponse } from "next/server";
 import { type NextRequest } from "next/server";
 import { useRouter } from "next/router";
 
-const URL = process.env.NEXT_PUBLIC_VERCEL_URL
-  ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api`
-  : "http://localhost:3000/api";
+const URL = process.env.DETA_URL || "https://nosqlidetector-1-t9082585.deta.app/api";
 
 export async function POST(req: Request) {
     const data = await req.formData();
