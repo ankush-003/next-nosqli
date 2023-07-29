@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import { prisma } from "../db";
 import { redirect } from "next/navigation";
+import { NextResponse } from "next/server";
 
 async function createUser(data: FormData) {
   "use server"
@@ -20,7 +21,7 @@ async function createUser(data: FormData) {
     redirect("/");
   } catch(e) {
     console.log(e);
-    redirect("/signup");
+    redirect("/signup/fail");
   }
 }
 
