@@ -1,12 +1,33 @@
+"use client";
+import { useState } from "react";
 interface LoginFormProps {
-    safe: boolean;
+  safe: boolean;
 }
 export default function LoginForm({ safe }: LoginFormProps) {
+  // const [message, setMessage] = useState("");
+  
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const url = safe ? "/apiSafe" : "/apiUnsafe";
+    const response = await fetch(url, {
+      method: "POST",
+      body: formData,
+    });
+    const json = await response.json();
+    console.log(json);
+    alert(json.result);
+    // setMessage(json.result);
+  }
   return (
+    <>
     <div className="flex justify-center items-center mt-8 pt-8 ">
-      <form className=" shadow-md  rounded px-12 py-12 mb-6 mt-6 backdrop-blur-2xl"
+      <form
+        className=" shadow-md  rounded px-12 py-12 mb-6 mt-6 backdrop-blur-2xl"
         action={safe ? "/apiSafe" : "/apiUnsafe"}
         method="POST"
+        // onSubmit={handleSubmit}
       >
         <div className="relative z-0 w-full mb-6 group">
           <input
@@ -55,16 +76,17 @@ export default function LoginForm({ safe }: LoginFormProps) {
             Password
           </label>
           {/*Submit Button*/}
-            <div className="flex justify-center items-center mt-6"> 
+          <div className="flex justify-center items-center mt-6">
             <button
-                type="submit"
-                className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                >
-                Log In
+              type="submit"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Log In
             </button>
-            </div>
+          </div>
         </div>
       </form>
     </div>
+  </>
   );
 }

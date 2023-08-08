@@ -40,6 +40,6 @@ export async function POST(req) {
     // redirects only occur at server side
     // redirect('/')
     // return NextResponse.json({ username: username, password: password, email: email , payload: payload, res: test2});
-    return NextResponse.json({ res: test2});
+    return NextResponse.json({ result: test2});
 }
 
