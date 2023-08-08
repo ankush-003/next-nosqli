@@ -1,30 +1,53 @@
+"use client"
 import Navbar from "@/components/Navbar";
-import { prisma } from "../db";
-import { redirect } from "next/navigation";
+import createUser from "./createuser"
+import { useState, useRef } from "react";
+// import { redirect } from "next/navigation";
+// import { NextResponse } from "next/server";
 
-async function createUser(data: FormData) {
-  "use server"
-  const username = data.get("username")?.toString();
-  const email = data.get("email")?.toString();
-  const password = data.get("password")?.toString();
-  const user = await prisma.users.create({
-    data: {
-      // ! means that we are sure that the value is not null
-      username: username!,
-      email,
-      password: password!,
-    },
-  });
-  console.log(user);
-  redirect("/");
-}
+// async function createUser(data: FormData) {
+//   "use server"
+//   const username = data.get("username")?.toString();
+//   const email = data.get("email")?.toString();
+//   const password = data.get("password")?.toString();
+//   try  {
+//     const user = await prisma.users.create({
+//       data: {
+//         // ! means that we are sure that the value is not null
+//         username: username!,
+//         email: email!,
+//         password: password!,
+//       },
+//     });
+//     console.log(user);
+//     return {message: "Signup Successful", user: user}
+//     // redirect("/");
+//   } catch(e) {
+//     console.log(e);
+//     return {message: "Signup Failed", error: e}
+//     // redirect("/signup/fail");
+//     // return e;
+//   }
+// }
 
 export default function Signup() {
+  const [message, setMessage] = useState("");
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const username = event.currentTarget.username.value;
+    const email = event.currentTarget.email.value;
+    const password = event.currentTarget.password.value;
+
+    const res = await createUser({username, email, password});
+    alert(res.message);
+    console.log(res);
+  }
   return (
     <div>
       <Navbar />
       <div className="mt-8 bg-transparent py-6 flex flex-col justify-center sm:py-12">
-        <form action={createUser}>
+        <form onSubmit={handleSubmit}>
         <div className="relative py-3 sm:max-w-xl sm:mx-auto">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-300 to-blue-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
           <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
@@ -83,10 +106,11 @@ export default function Signup() {
                       Password
                     </label>
                   </div>
-                  <div className="relative flex justify-center pt-2 items-center">
+                  <div className="relative flex justify-center pt-2 items-center gap-2">
                     <button className="bg-blue-500 text-white rounded-md px-2 py-1">
                       Submit
                     </button>
+                    <input type="reset" value="Reset"  className="bg-blue-500 text-white rounded-md px-2 py-1"/>
                   </div>
                   
                 </div>
