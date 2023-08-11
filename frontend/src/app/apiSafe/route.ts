@@ -32,7 +32,7 @@ export async function POST(req: Request) {
         // const res = JSON.parse(res_text);
         if (res?.result.label === "Malicious") {
             console.log("Malicious request detected");
-            return NextResponse.json({res: res, payload: payload});
+            return NextResponse.json(res);
         } 
         if (res?.result.label === "Benign") {
             console.log("Safe request");
@@ -44,11 +44,11 @@ export async function POST(req: Request) {
                 }
             })
             console.log(user);
-            res.user = user;
+            res.user = user[0]?.username;
             return NextResponse.json(res);
         }
             console.log("Invalid Response");
-            return NextResponse.json({res: res, payload: payload});
+            return NextResponse.json(res);
     } catch(err) {
         console.log(err);
         let res = {
