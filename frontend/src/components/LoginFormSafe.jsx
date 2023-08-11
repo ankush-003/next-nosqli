@@ -9,7 +9,7 @@ export default function LoginFormSafe() {
   const [message, setMessage] = useState("");
   // const [user, setUser] = useState("");
   
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event) {
     event.preventDefault();
     const form = event.currentTarget;
     const formData = new FormData(form);
