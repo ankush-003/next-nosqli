@@ -1,7 +1,7 @@
 type Severity = "error" | "success" | "info" | "warning";
 "use client";
 import { useState } from "react";
-import {Alert, AlertColor} from '@mui/material/Alert';
+import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Zoom from '@mui/material/Zoom';
 interface LoginFormProps {
