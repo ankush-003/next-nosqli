@@ -8,7 +8,7 @@ interface LoginFormProps {
 }
 export default function LoginForm({ safe }: LoginFormProps) {
   const [logged, setLogged] = useState(false);
-  const [severity: AlertColor, setSeverity] = useState("info");
+  const [severity, setSeverity] = useState<AlertColor>("info");
   const [message, setMessage] = useState("");
   
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
