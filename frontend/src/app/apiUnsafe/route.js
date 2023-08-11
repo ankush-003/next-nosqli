@@ -35,11 +35,11 @@ export async function POST(req) {
         // username: username,
         password: password,
     }).toArray();
-    const test2 = JSON.stringify(test)
-    console.log(test2)
+    // const test2 = JSON.stringify(test)
+    console.log(test)
     // redirects only occur at server side
     // redirect('/')
     // return NextResponse.json({ username: username, password: password, email: email , payload: payload, res: test2});
-    return NextResponse.json({ result: test2});
+    return NextResponse.json({ result: test});
 }
 

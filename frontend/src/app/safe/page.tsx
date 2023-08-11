@@ -1,11 +1,11 @@
 import Navbar from "@/components/Navbar";
-import LoginForm from "@/components/LoginForm";
+import LoginFormSafe from "@/components/LoginFormSafe";
 import { prisma } from "../db";
 export default function Safe() {
   return (
     <div>
       <Navbar />
-      <LoginForm safe={true} />
+      <LoginFormSafe/>
     </div>
   );
 }

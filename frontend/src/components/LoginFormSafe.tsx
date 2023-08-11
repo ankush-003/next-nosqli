@@ -3,19 +3,17 @@ import { useState } from "react";
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Zoom from '@mui/material/Zoom';
-interface LoginFormProps {
-  safe: boolean;
-}
-export default function LoginForm({ safe }: LoginFormProps) {
+
+export default function LoginFormSafe() {
   const [logged, setLogged] = useState(false);
-  const [severity, setSeverity] = useState("");
   const [message, setMessage] = useState("");
+  // const [user, setUser] = useState("");
   
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
     const formData = new FormData(form);
-    const url = safe ? "/apiSafe" : "/apiUnsafe";
+    const url = "/apiSafe";
     const response = await fetch(url, {
       method: "POST",
       body: formData,
@@ -23,23 +21,24 @@ export default function LoginForm({ safe }: LoginFormProps) {
     const json = await response.json();
     // const data = JSON.parse(json.result);
     // console.table(json);
-    // alert(json.result)
+    alert(`${json.user == null ? "Login Failed" : json.user }`)
+    
     setLogged(true);
-    if(!json.result[0]) {
-      setSeverity("error")
-      setMessage("Login Failed")
-    } else {
-      setSeverity("success")
-      setMessage(`Welcome ${json.result[0]['username']}`)
-    }
-    // setMessage(json.result);
+    // setUser(`${json.user == null ? 'Invalid Login' : ` Welcome ${json.user}`}`)
+    let entries = Object.entries(json.result.confidences[0])
+    let msg = " "
+
+    let data = entries.map( ([key, val] = entry) => {
+      msg += key.toString() + ": " + val.toString() + "\n";
+    });
+    setMessage(msg);
   }
   return (
     <>
     <div className="p-2 mt-3 text-center">
     <Zoom style={{ transitionDelay: logged ? '500ms' : '0ms' }} in={logged} mountOnEnter unmountOnExit>
           {
-            <Alert severity={severity}>
+            <Alert severity="info">
             <AlertTitle>{message}</AlertTitle>
             </Alert>
           }
