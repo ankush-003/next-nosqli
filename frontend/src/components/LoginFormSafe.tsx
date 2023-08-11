@@ -20,7 +20,7 @@ export default function LoginFormSafe() {
     });
     const json = await response.json();
     // const data = JSON.parse(json.result);
-    // console.table(json);
+    console.table(json);
     alert(`${json.user == null ? "Login Failed" : json.user }`)
     
     setLogged(true);

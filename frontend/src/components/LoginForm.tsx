@@ -8,7 +8,7 @@ interface LoginFormProps {
 }
 export default function LoginForm({ safe }: LoginFormProps) {
   const [logged, setLogged] = useState(false);
-  const [severity, setSeverity] = useState("");
+  const [severity, setSeverity] = useState("info");
   const [message, setMessage] = useState("");
   
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
