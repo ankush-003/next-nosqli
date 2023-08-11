@@ -1,3 +1,4 @@
+type Severity = "error" | "success" | "info" | "warning";
 "use client";
 import { useState } from "react";
 import {Alert, AlertColor} from '@mui/material/Alert';
@@ -8,7 +9,7 @@ interface LoginFormProps {
 }
 export default function LoginForm({ safe }: LoginFormProps) {
   const [logged, setLogged] = useState(false);
-  const [severity, setSeverity] = useState<AlertColor>("info");
+  const [severity, setSeverity] = useState<Severity>("info");
   const [message, setMessage] = useState("");
   
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
