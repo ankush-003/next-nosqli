@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import Alert from '@mui/material/Alert';
+import {Alert, AlertColor} from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Zoom from '@mui/material/Zoom';
 interface LoginFormProps {
@@ -8,7 +8,7 @@ interface LoginFormProps {
 }
 export default function LoginForm({ safe }: LoginFormProps) {
   const [logged, setLogged] = useState(false);
-  const [severity, setSeverity] = useState("info");
+  const [severity: AlertColor, setSeverity] = useState("info");
   const [message, setMessage] = useState("");
   
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
